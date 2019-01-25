@@ -1,0 +1,17 @@
+The config for the audiogram needs to be filled as follows, with one value
+per line, and starting in the first line of the file.
+
+name of the subfolder to store results, e.g. out - do not change, 'out' might be hard-coded ocassionally
+number of trials, e.g. 100
+feature not used
+sound pressure level of a full scale sinusoid, e.g. 120; 116.9, 102.1, 91.3
+sampling rate, e.g. 48000
+feature not used
+number of pulses per stimulus, e.g. 3
+duration of one pulse in ms (this includes rise and fall time), e.g. 500
+pause time between pulses, e.g. 300
+rise and fall time of a pulse, e.g 50
+minimum frequency to be tested, e.g. 125
+maximum frequency to be tested, e.g. 8000
+step size in octaves, e.g. 0.1 leads to 10 frequencies per octave considered
+number of silent trials

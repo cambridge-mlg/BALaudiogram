@@ -1,0 +1,39 @@
+Function flow during a typical audiogram test (rough overview):
+
+- audiogram.m audiogram
+- audiogram.m audiogram_OutputFcn
+- audiogram.m pbStart
+-- runAudiogramTrial
+
+- audiogram.m pbYes or pbNo
+-- chooseNextAudiogramTrial
+--- getNextAudiogramTrial1kHz
+-- runAudiogramTrial
+--- genAudiogramSound
+repeat until a Yes and No response occurred at 1 kHz
+
+- audiogram.m pbYes or pbNo
+-- chooseNextAudiogramTrial
+--- getNextAudiogramTrialOctaves
+---- getNextAudiogramTrialBorderFrequency (if at edge of range to be tested)
+-- runAudiogramTrial
+--- genAudiogramSound
+repeat until a rough grid (approx. 10-15 trials) is obtained
+
+- audiogram.m pbYes or pbNo
+-- chooseNextAudiogramTrial
+--- getNextAudiogramTrialGP
+-- runAudiogramTrial
+--- genAudiogramSound
+repeat until pre-determined number of trials is reached
+
+- audiogram.m pbYes or pbNo
+- chooseNextAudiogramTrial (no effect)
+- saveAudiogram
+-- get50PercentContour
+-- analyzeSingle3GivenLengthScale
+
+Suggested to run afterwards:
+- analyzeSingle3 (calculate a GP on all trials/responses, but optimize hyperparameters)
+- analyzeProcess (produces a video that shows the current GP estimate after each trial, mutual information, and the most informative trial that is chosen)
+

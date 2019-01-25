@@ -1,0 +1,5 @@
+When the blue rectangle appears, a sound might be played.
+The sound always consists of three pulses of a tone.
+After the rectangle has disappeared, please tell us if you have heard a tone by pressing "Yes" or "No".
+
+Please press "Start" when the door is closed and you are ready to start.
