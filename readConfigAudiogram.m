@@ -1,4 +1,4 @@
-function [strOutputFolder, nTrialsMax, dInformationStop, LMaxLevelSPL, Fs, InterTrial, nPulses, nPulseDuration, nPulsePause, nRiseFall, nMinF, nMaxF, dStepSize, nSilentTrials, nFirstFrequency, nFirstLevel] = readConfigAudiogram()
+function [strOutputFolder, nTrialsMax, dInformationStop, LMaxLevelSPL, Fs, InterTrial, nPulses, nPulseDuration, nPulsePause, nRiseFall, nMinF, nMaxF, dStepSize, nSilentTrials, nFirstFrequency, nFirstLevel, bFullScreen, bPlot] = readConfigAudiogram()
 
 % read the configuration file and store the variables
 % see configAudiogram.txt and configAudiogram_Explanation.txt
@@ -20,4 +20,6 @@ dStepSize = str2double( fgetl(fid) );
 nSilentTrials = str2double( fgetl(fid) );
 nFirstFrequency = str2double( fgetl(fid) );
 nFirstLevel = str2double( fgetl(fid) );
+bFullScreen = str2double( fgetl(fid) );
+bPlot = str2double( fgetl(fid) );
 fclose(fid);

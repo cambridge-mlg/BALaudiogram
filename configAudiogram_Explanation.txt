@@ -18,4 +18,3 @@ number of silent trials
 frequency of first tone to present (Hz)
 level of first tone to present (dB HL)
 full screen (1 yes, 0 no)
-feedback/intermediate result as soon as GP is reached (1 yes, 0 no)

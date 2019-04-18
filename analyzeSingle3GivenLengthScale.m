@@ -1,6 +1,9 @@
 function [tforig, tLorig, mYt] = analyzeSingle3GivenLengthScale( filenameData, dLengthScale )
 
 % same as analyzeSingle3, but do not optimize hyperparameters (except mean)
+% use original code for compatibility with JASA paper
+% use functions that are called in getNextAudiogramTrialGP if you want to
+% update/revamp this function
 
 bPlot = 1;
 

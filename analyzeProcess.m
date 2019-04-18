@@ -3,7 +3,9 @@ function analyzeProcess( strFile )
 % This script produces a video of the experiment. It shows each trial
 % (stimulus parameters, response, and updated threshold/detection
 % probabilities)
-% frames are saved to 
+% use original code for compatibility with JASA paper
+% use functions that are called in getNextAudiogramTrialGP if you want to
+% update/revamp this function
 
 addpath(genpath(pwd))
 addpath(genpath('../gpml-matlab-v3.6-2015-07-07'))
@@ -13,7 +15,7 @@ addpath(genpath('../gpml-matlab-v3.6-2015-07-07'))
 nMinF     = 500;
 nMaxF     = 3000;
 nStepSize = 0.1;
-LgridMax  = 90;
+LgridMax  = 77;
 
 cR = linspace(1,1,100);
 cG = linspace(1,0.08,100);

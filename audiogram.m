@@ -56,20 +56,21 @@ function varargout = audiogram_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-% full screen
-%set(hObject, 'units','normalized','outerposition',[0 0.5 0.4 0.4]); % full screen
-
 addpath(genpath('../gpml-matlab-v3.6-2015-07-07'));
 
 TextFileToEdit( 'instructions_audiogram.txt', handles.edit1 );
 
 % read configuration file
-[handles.strOutputFolder, handles.nTrialsMax, handles.dInformationStop, handles.LMaxLevelSPL, handles.Fs, handles.InterTrial, handles.nPulses, handles.nPulseDuration, handles.nPulsePause, nRiseFall, handles.nMinF, handles.nMaxF, handles.dStepSize, handles.nSilentTrials, handles.nNextF, handles.nNextL] = readConfigAudiogram();
+[handles.strOutputFolder, handles.nTrialsMax, handles.dInformationStop, handles.LMaxLevelSPL, handles.Fs, handles.InterTrial, handles.nPulses, handles.nPulseDuration, handles.nPulsePause, nRiseFall, handles.nMinF, handles.nMaxF, handles.dStepSize, handles.nSilentTrials, handles.nNextF, handles.nNextL, handles.bFullScreen] = readConfigAudiogram();
 handles.dRiseFall        = nRiseFall / 1000;
 guidata(hObject,handles);
 vSilentTrials            = randperm( handles.nTrialsMax - 12 ) + 10; % trial numbers after which catch trials appear
 handles.vSilentTrials    = vSilentTrials(1:(handles.nSilentTrials));
 handles.bLastTrialSilent = 0;
+
+if ( handles.bFullScreen)
+    set(hObject, 'units','normalized','outerposition',[0 0 1 1]); % full screen
+end
 
 strSubject = getSubjectCode();
 
@@ -218,6 +219,8 @@ else % evaluate normal, run normal; there are never two silent without a normal 
     handles.vFPresented = [handles.vFPresented handles.nNextF];
     [handles.nNextF, handles.nNextL, dInformation, handles.eInitial, vHyperParameters] = chooseNextAudiogramTrial( handles.eInitial, handles.vFPresented, handles.vLPresented, handles.vAnswers, handles.nMinF, handles.nMaxF, handles.dStepSize, handles.LMaxLevelSPL, handles.strSubject, handles.strEar, handles.strStartTime );
     handles.vInformation = [handles.vInformation dInformation];
+    size( handles.mHyperParameters )
+    size( vHyperParameters )
     handles.mHyperParameters = [handles.mHyperParameters; vHyperParameters];
     guidata(hObject,handles);
     if ( length( handles.vAnswers ) < handles.nTrialsMax )      
