@@ -3,6 +3,7 @@ function [vFCleared, vLCleared, vCCleared, vLRelCleared] = clearOutliersAudiogra
 % clear frequency and level vectors for outliers for plotting/analysis/etc
 % outlier is defined as being dStDevs standard deviations 'on the wrong side of the
 % threshold'
+% not used during active learning in JASA paper
 
 dStDevs = 2.33;
 

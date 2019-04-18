@@ -15,3 +15,7 @@ minimum frequency to be tested, e.g. 125
 maximum frequency to be tested, e.g. 8000
 step size in octaves, e.g. 0.1 leads to 10 frequencies per octave considered
 number of silent trials
+frequency of first tone to present (Hz)
+level of first tone to present (dB HL)
+full screen (1 yes, 0 no)
+feedback/intermediate result as soon as GP is reached (1 yes, 0 no)

@@ -1,7 +1,7 @@
 function varargout = audiogram(varargin)
-%  Yes/No audiogram using GP and maximising mutual information
+%  Yes/No audiogram using GP
 %  Copyright by Josef Schlittenlacher, Richard Turner and B.C.J Moore
-%  Copyright for GP code: see file headers in gpml folder and/or http://www.gaussianprocess.org
+%  Copyright for GP code: see file headers in gpml folder
 %
 %  for subject testing, set bPlot to 0 in getNextAudiogramTrialGP, line 3
 %  to follow the process, set it to 1
@@ -56,14 +56,15 @@ function varargout = audiogram_OutputFcn(hObject, eventdata, handles)
 % Get default command line output from handles structure
 varargout{1} = handles.output;
 
-set(hObject, 'units','normalized','outerposition',[0 0 1 1]); % full screen
+% full screen
+%set(hObject, 'units','normalized','outerposition',[0 0.5 0.4 0.4]); % full screen
 
 addpath(genpath('../gpml-matlab-v3.6-2015-07-07'));
 
 TextFileToEdit( 'instructions_audiogram.txt', handles.edit1 );
 
 % read configuration file
-[handles.strOutputFolder, handles.nTrialsMax, handles.dInformationStop, handles.LMaxLevelSPL, handles.Fs, handles.InterTrial, handles.nPulses, handles.nPulseDuration, handles.nPulsePause, nRiseFall, handles.nMinF, handles.nMaxF, handles.dStepSize, handles.nSilentTrials] = readConfigAudiogram();
+[handles.strOutputFolder, handles.nTrialsMax, handles.dInformationStop, handles.LMaxLevelSPL, handles.Fs, handles.InterTrial, handles.nPulses, handles.nPulseDuration, handles.nPulsePause, nRiseFall, handles.nMinF, handles.nMaxF, handles.dStepSize, handles.nSilentTrials, handles.nNextF, handles.nNextL] = readConfigAudiogram();
 handles.dRiseFall        = nRiseFall / 1000;
 guidata(hObject,handles);
 vSilentTrials            = randperm( handles.nTrialsMax - 12 ) + 10; % trial numbers after which catch trials appear
@@ -79,11 +80,11 @@ handles.vAnswers = []; % responses (0|1) of these trials
 handles.vInformation = [1];
 handles.mHyperParameters = [0 0 0 0 0];
 handles.eInitial = 2; % 2 -> 1 kHz test, 1 -> audiometric f test, 0 -> GP test
-handles.nNextF = 1000; % first trial at 1 kHz and 60 dB HL
-handles.nNextL = 60;
+%handles.nNextF = 1000; % first trial at 1 kHz and 60 dB HL
+%handles.nNextL = 60;
 handles.strSubject = strSubject;
 
-set(handles.axes1,'Visible','Off');
+%set(handles.axes1,'Visible','Off');
 
 guidata(hObject,handles);
 

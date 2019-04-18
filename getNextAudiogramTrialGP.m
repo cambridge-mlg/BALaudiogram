@@ -1,17 +1,6 @@
 function [f, L, dInformation, vHyperParameters] = getNextAudiogramTrialGP( vFPresented, vLPresented, vAnswers, nMinF, nMaxF, nStepSize, LMaxSPL )
 
-% return the frequency and the level to be presented in the next trial
-% by calculating a GP for classification and choose the most informative
-% pair
-% dInformation is the information of that pair in bit, vHyperParameters the
-% hyperparameters of the GP (4 elements for covariance and 1 for the mean)
-% parameters that need to be passed are the frequencies and levels that
-% were presented so far (vFPresented, vLPresented), and the corresponding
-% responses (vAnswers, 0 and 1), the minimum and maximum frequency to be
-% considered (in Hz), the step size of the grid in octaves and the maximum
-% level, i.e. the SPL of a full-scale sinusoid
-
-bPlot = 0; % plot current estimate in GUI
+bPlot = 1; % plot current estimate in GUI
 
 delta = 0.01;
 
@@ -23,7 +12,7 @@ hyp.mean = 0;
 covfunc = @covComb;   %  SE for frequency (1st column), linear for SPL (2nd column); provide covComb!
 likfunc = @likErfLapse;
 
-hyp.cov = log([3 0.5 3]);                 % priors: 1 factor for lin. intensity, 2 length scale for frequency, 3 factor for SE frequency
+hyp.cov = log([3 0.3 3]);                 % priors: 1 factor for lin. intensity, 2 length scale for frequency, 3 factor for SE frequency
 hyp.cov = [hyp.cov log(0)];            % add noise
 covfunc = {@covSum,{covfunc,@covNoise}};
 
@@ -36,6 +25,7 @@ vFLog = log2( vFPresented );
 LgridMin = -10;
 fInitial = 2.^(log2(nMinF):nStepSize:log2(nMaxF));
 LgridMax = min( LMaxSPL - MAP_MG2007(fInitial) + FlatAtEardrumCorrection(fInitial) );
+LgridMax = min( [LgridMax 90] );
 Lgrid = LgridMin:LgridMax;
 fgrid = log2( nMinF ):nStepSize:log2( nMaxF );
 tf = meshgrid(fgrid,Lgrid);

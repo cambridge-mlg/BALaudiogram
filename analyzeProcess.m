@@ -10,10 +10,10 @@ addpath(genpath('../gpml-matlab-v3.6-2015-07-07'))
 
 % strFile = [ 'out/' strFile ' all trials.txt'];
 
-nMinF     = 125;
-nMaxF     = 8000;
+nMinF     = 500;
+nMaxF     = 3000;
 nStepSize = 0.1;
-LgridMax  = 77;
+LgridMax  = 90;
 
 cR = linspace(1,1,100);
 cG = linspace(1,0.08,100);
@@ -126,7 +126,7 @@ for i=1:size(M,1)
     xlim([log2(nMinF) log2(nMaxF)]);
     ylim([min(Lgrid) max(Lgrid)]);
     text(log2(nMinF)+0.2, max(Lgrid) - 8, num2str(i), 'FontSize', nFontSize );
-    l = legend('next tone','''yes'' answers','''no'' answers','Location','NE');
+    l = legend('next tone','''yes'' answers','''no'' answers','Location','SE');
     xlabel('Frequency [Hz]');
     ylabel(['Hearing loss [dB]']);    
     set(gca,'XTick',log2([125 250 500 1000 2000 4000 8000]),'XTickLabel',[125 250 500 1000 2000 4000 8000]);

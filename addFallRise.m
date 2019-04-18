@@ -3,16 +3,16 @@ function erg = addFallRise(s,Fs,d,shape,gaussdev)
 % add rise and fall time to a stimulus
 
 if nargin < 5
-    gaussdev = 3;
+    gaussdev = 3; % number of SDs if shape is Gaussian
 end
 if nargin < 4
-    shape = 'h'; % Hann window
+    shape = 'h';
 end
 if nargin < 3
-    d = 0.005; % 5 msec
+    d = 0.005;
 end
 if nargin < 2
-    Fs = 48000; % 48 kHz
+    Fs = 48000;
 end
 
 nSamples = d * Fs;
